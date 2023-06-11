@@ -1,0 +1,54 @@
+version: "3.4"
+
+services:
+  proxy:
+    build: speeedmaster/serialization-proxy-server
+    environment:
+      - MULTICAST_IP=239.10.10.10
+      - MULTICAST_PORT=3000
+      - PROXY_PORT=2000
+      - WORKER_PORT=2025
+    ports:
+      - "2000:2000/udp"
+  native:
+    image: speeedmaster/serialization-worker
+    environment:
+      - METHOD=native
+      - MULTICAST_IP=239.10.10.10
+      - MULTICAST_PORT=3000
+      - PORT=2025
+  xml:
+    image: speeedmaster/serialization-worker
+    environment:
+      - METHOD=xml
+      - MULTICAST_IP=239.10.10.10
+      - MULTICAST_PORT=3000
+      - PORT=2025
+  json:
+    image: speeedmaster/serialization-worker
+    environment:
+      - METHOD=json
+      - MULTICAST_IP=239.10.10.10
+      - MULTICAST_PORT=3000
+      - PORT=2025
+  yaml:
+    image: speeedmaster/serialization-worker
+    environment:
+      - METHOD=yaml
+      - MULTICAST_IP=239.10.10.10
+      - MULTICAST_PORT=3000
+      - PORT=2025
+  protobuf:
+    image: speeedmaster/serialization-worker
+    environment:
+      - METHOD=protobuf
+      - MULTICAST_IP=239.10.10.10
+      - MULTICAST_PORT=3000
+      - PORT=2025
+  msgpack:
+    image: speeedmaster/serialization-worker
+    environment:
+      - METHOD=msgpack
+      - MULTICAST_IP=239.10.10.10
+      - MULTICAST_PORT=3000
+      - PORT=2025
