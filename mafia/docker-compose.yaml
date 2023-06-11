@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    hostname: "rabbitmq"
+    # ports:
+    #   - "5672:5672"
+    #   - "15672:15672"
+  main_server:
+    container_name: main_server
+    restart: always
+    hostname: server
+    build:
+      context: .
+      dockerfile: dockerfiles/server.dockerfile
+    depends_on:
+      - rabbitmq
+    ports:
+      - "2001:2001"
+  notify_server:
+    container_name: notify_server
+    restart: always
+    depends_on:
+      - rabbitmq
+    ports:
+      - "3001:3001"
+    build:
+      context: .
+      dockerfile: dockerfiles/notify_server.dockerfile

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+service NotifyServer {
+ rpc RegisterSession(RegisterSessionRequest) returns (RegisterSessionResponse) {}
+}
+
+message RegisterSessionRequest {
+ int32 session_id = 1;
+ repeated string usernames = 2;
+ repeated string uuids = 3;
+ repeated bool secret = 4;
+ repeated string hosts = 5;
+ repeated int32 ports = 6;
+}
+
+message RegisterSessionResponse {
+}
+
