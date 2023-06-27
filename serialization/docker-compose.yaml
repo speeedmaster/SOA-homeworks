@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   proxy:
-    build: speeedmaster/serialization-proxy-server
+    image: speeedmaster/serialization-proxy-server
     environment:
       - MULTICAST_IP=239.10.10.10
       - MULTICAST_PORT=3000
